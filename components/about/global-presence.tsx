@@ -4,6 +4,7 @@ const locations = [
   {
     country: "United States",
     role: "Headquarters",
+    city: "Sheridan, Wyoming",
     address: "1463 Coffeen Avenue STE 1200\nSheridan, Wyoming 82801\nUnited States",
     features: ["Executive Leadership", "Enterprise Sales", "Strategic Partnerships"],
     image: "/new-york-city-skyline-modern-business-district-sun.jpg",
@@ -11,6 +12,7 @@ const locations = [
   {
     country: "Pakistan",
     role: "Operations Center",
+    city: "Karachi",
     address: "Business District, Tower A\nKarachi, Pakistan",
     features: ["24/7 Operations", "Technical Support", "Customer Service"],
     image: "/lahore-pakistan-modern-business-district-skyline.jpg",
@@ -18,9 +20,10 @@ const locations = [
   {
     country: "Vietnam",
     role: "Service Center",
+    city: "Ho Chi Minh City",
     address: "District 1 Business Hub\nHo Chi Minh City, Vietnam",
     features: ["Customer Support", "Technical Services", "Quality Assurance"],
-    image: "/placeholder.svg",
+    image: null,
   },
 ]
 
@@ -34,23 +37,32 @@ export function GlobalPresence() {
             Strategic Locations for Optimal Service
           </h2>
           <p className="text-primary-foreground/80">
-            Our dual-location strategy enables us to provide round-the-clock support while maintaining cost efficiency
-            and quality standards.
+            Teams across time zones let us provide round-the-clock support while maintaining cost efficiency and
+            quality standards.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {locations.map((location) => (
             <div
               key={location.country}
               className="overflow-hidden rounded-xl bg-primary-foreground/5 border border-primary-foreground/10"
             >
               <div className="h-48 overflow-hidden">
-                <img
-                  src={`/placeholder.svg?height=300&width=600&query=${location.country === "United States" ? "modern office building New York skyline" : "modern business center Lahore Pakistan"}`}
-                  alt={`${location.country} office`}
-                  className="w-full h-full object-cover"
-                />
+                {location.image ? (
+                  <img
+                    src={location.image}
+                    alt={`${location.country} ${location.role.toLowerCase()}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary/30 via-primary-foreground/5 to-transparent">
+                    <span className="text-2xl font-bold tracking-wide text-primary-foreground/80">
+                      {location.city}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="p-8">
                 <div className="flex items-start gap-4 mb-6">

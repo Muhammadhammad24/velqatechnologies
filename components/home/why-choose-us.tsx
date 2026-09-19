@@ -102,7 +102,7 @@ export function WhyChooseUs() {
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <Image
-                      src={src || "/placeholder.svg"}
+                      src={src}
                       alt="Team member"
                       width={40}
                       height={40}
