@@ -1,137 +1,49 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next"
 
-export const dynamic = 'force-static'
+export const dynamic = "force-static"
+
+const BASE_URL = "https://velqatechnologies.com"
+
+type Entry = [path: string, changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"], priority: number]
+
+const SERVICES = [
+  "call-center",
+  "customer-support",
+  "email-support",
+  "live-chat",
+  "inbound-support",
+  "technical-support",
+  "multi-channel",
+  "order-management",
+  "order-account-management",
+  "back-office",
+  "back-office-operations",
+  "bpo-cx-services",
+  "cx-quality",
+]
+
+const INDUSTRIES = ["ecommerce", "tech-saas", "finance", "healthcare", "marketplace", "digital-products"]
+
+const PAGES: Entry[] = [
+  ["", "weekly", 1],
+  ["/about", "monthly", 0.9],
+  ["/services", "weekly", 0.9],
+  ...SERVICES.map((s): Entry => [`/services/${s}`, "monthly", 0.8]),
+  ["/industries", "weekly", 0.9],
+  ...INDUSTRIES.map((i): Entry => [`/industries/${i}`, "monthly", 0.8]),
+  ["/velqa-publishers", "monthly", 0.7],
+  ["/careers", "weekly", 0.7],
+  ["/contact", "monthly", 0.8],
+  ["/privacy", "yearly", 0.3],
+  ["/terms", "yearly", 0.3],
+]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://velqatechnologies.com'
-  const currentDate = new Date()
-
-  return [
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/services/call-center`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/customer-support`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/email-support`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/live-chat`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/order-management`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/back-office`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/industries/ecommerce`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/tech-saas`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/finance`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/healthcare`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/marketplace`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/digital-products`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/velqa-publishers`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/careers`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-  ]
+  const lastModified = new Date()
+  return PAGES.map(([path, changeFrequency, priority]) => ({
+    url: `${BASE_URL}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+  }))
 }
