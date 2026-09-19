@@ -5,7 +5,7 @@ company with teams in the USA and Pakistan. It covers 13 service lines,
 6 industry verticals, a careers page and the Velqa Publishers imprint, and
 every page is statically generated.
 
-**Live:** (https://velqatechnologies.com)
+**Live:** (www.velqatechnologies.com)
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
